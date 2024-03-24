@@ -1,6 +1,6 @@
 import mongoose, {Schema} from "mongoose";
 import slugify from 'slugify';
-import validator from 'validator';
+// import validator from 'validator';
 
 const genreValues = ['Biography', 'History', 'Fantasy', 'Science Fiction', 'Fiction', 'Historical Fiction']
 

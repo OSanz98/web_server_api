@@ -6,7 +6,7 @@
  * node data/import-dev-data.js --delete
  */
 
-import connectDB from "../config/db.js";
+import connectDB from "../utils/db.js";
 import Book from "../models/bookModel.js";
 import {books} from './booksJson.js';
 import dotenv from 'dotenv';
