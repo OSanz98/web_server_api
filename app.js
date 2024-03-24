@@ -7,6 +7,7 @@ import connectDB from './config/db.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 dotenv.config({path: './config.env'});
+app.use(express.json()) //allow clients to pass data in request bodies.
 
 // Connect to database
 connectDB();

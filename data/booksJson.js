@@ -6,7 +6,8 @@ export const books = [
 	read: false,
 	price: 2.0,
 	bookTourDates: "2022-06-15T00:00:00.000Z",
-    booksSold: 650
+    booksSold: 650,
+	secretTours: false
 },
 {
 	title: 'Les Misérables',
@@ -18,7 +19,8 @@ export const books = [
 		"2021-09-18T00:00:00.000Z",
 		"2023-04-02T00:00:00.000Z"
 	],
-	booksSold: [720, 850]
+	booksSold: [720, 850],
+	secretTours: false
 },
 {
 	title: 'The Time Machine',
@@ -31,7 +33,8 @@ export const books = [
 		"2023-07-22T00:00:00.000Z",
 		"2024-02-10T00:00:00.000Z"
 	],
-	booksSold: [610, 780, 940]
+	booksSold: [610, 780, 940],
+	secretTours: false
 },
 {
 	title: 'A Journey into the Center of the Earth',
@@ -40,7 +43,8 @@ export const books = [
 	read: false,
 	price: 23.5,
 	bookTourDates: "2022-03-12T00:00:00.000Z",
-    booksSold: 530
+    booksSold: 530,
+	secretTours: false
 },
 {
 	title: 'The Dark World',
@@ -52,7 +56,8 @@ export const books = [
 		"2021-07-03T00:00:00.000Z",
 		"2023-10-28T00:00:00.000Z"
 	],
-	booksSold: [690, 810]
+	booksSold: [690, 810],
+	secretTours: false
 },
 {
 	title: 'The Wind in the Willows',
@@ -65,7 +70,8 @@ export const books = [
 		"2023-12-02T00:00:00.000Z",
 		"2024-06-19T00:00:00.000Z"
 	],
-	booksSold: [770, 920, 680]
+	booksSold: [770, 920, 680],
+	secretTours: false
 },
 {
 	title: 'Life On The Mississippi',
@@ -74,7 +80,8 @@ export const books = [
 	read: false,
 	price: 1,
 	bookTourDates: "2021-11-27T00:00:00.000Z",
-    booksSold: 560
+    booksSold: 560,
+	secretTours: false
 },
 {
 	title: 'Childhood',
@@ -86,6 +93,7 @@ export const books = [
 		"2022-08-20T00:00:00.000Z",
 		"2023-02-25T00:00:00.000Z"
 	],
-	booksSold: [840, 710]
+	booksSold: [840, 710],
+	secretTours: false
 }
 ];

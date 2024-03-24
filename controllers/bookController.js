@@ -66,7 +66,7 @@ const createBook = async(req, res) => {
     }catch(err) {
         res.status(400).json({
             status: 'failure',
-            message: 'Invalid data sent!'
+            message: err.message
         })
     }
 };
