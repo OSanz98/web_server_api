@@ -2,6 +2,7 @@
 import Book from '../models/bookModel.js';
 import APIFeature from '../utils/apiFeatures.js';
 import catchAsync from '../utils/catchAsync.js';
+import AppError from '../utils/appError.js';
 
 /**
  * This is a middleware function which is called when user routes to latest-5-books.
@@ -34,6 +35,10 @@ const retrieveBooks = catchAsync(async(req, res, next) => {
     .limit()
     .paginate();
     const documents = await features.query; 
+
+    // not including next(err) here if we don't get documents from the database, because
+    // technically it's not an error if nothing is found. If nothing is found searching for all documents
+    // then one should return an empty object as nothing exists, instead of throwing an error.
     
     //Send Response with documents
     res.status(200).json({
@@ -69,6 +74,10 @@ const findBookById = catchAsync(async(req, res, next) => {
     const bookId = req.params.id;
     const retrievedBook = await Book.findById(bookId);
 
+    if(!retrievedBook) {
+        return next(new AppError('No book found with that ID', 404));
+    }
+
     res.status(200).json({
         status: "sucesss",
         data: { retrievedBook }
@@ -89,6 +98,10 @@ const updateBook = catchAsync(async(req, res, next) => {
         runValidators: true //if true, the validators validate the update operation against the model's schema.
     })
 
+    if(!updatedBook) {
+        return next(new AppError('No book found with that ID', 404));
+    }
+
     res.status(200).json({
         status: 'success',
         data: {
@@ -104,7 +117,12 @@ const updateBook = catchAsync(async(req, res, next) => {
  * @param {Response} res 
  */
 const deleteBook = catchAsync(async(req, res, next) => {
-    await Book.findByIdAndDelete(req.params.id);
+    const deletedBook = await Book.findByIdAndDelete(req.params.id);
+
+    if(!deletedBook) {
+        return next(new AppError('No book found with that ID', 404));
+    }
+
     res.status(204).json({
         status: 'success',
         data: null

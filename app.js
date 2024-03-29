@@ -8,7 +8,7 @@ import globalErrorHandler from './utils/errorController.js';
 // Initialisation
 const app = express();
 const PORT = process.env.PORT || 3000;
-dotenv.config({path: './config.env'});
+dotenv.config();
 app.use(express.json()) //allow clients to pass data in request bodies.
 
 // Connect to database
@@ -26,6 +26,25 @@ app.all('*', (req, res, next) => {
 app.use(globalErrorHandler);
 
 //set listening port
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log(`Running on port ${PORT}`)
+});
+
+// subscribe to unhandled promise rejections in order to create a global way of handling this type of errors across the application.
+// This will prevent the Node.js process from terminating.
+process.on('unhandledRejection', err => {
+    console.log(err.name, err.message);
+    // close down server first
+    server.close();
+});
+
+process.on('uncaughtException', err => {
+    console.log(err.name, err.message);
+    server.close();
+})
+
+// subscribe to the server shutting down event and then shut down the application
+server.on('close', () => {
+    // we terminate the process because let's say the database can't be connected to then this API won't be useful.
+    process.exit(1); //1 stands for uncaught exception and 0 stands for success.
 });
